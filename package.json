@@ -4,6 +4,8 @@
   "description": "to do list",
   "main": "webpack.config.js",
   "dependencies": {
+    "@popperjs/core": "^2.6.0",
+    "bootstrap": "^5.0.0-beta1",
     "css-loader": "^5.0.1",
     "lodash": "^4.17.20",
     "style-loader": "^2.0.0",
