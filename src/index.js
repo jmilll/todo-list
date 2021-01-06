@@ -1,11 +1,12 @@
 // You can specify which plugins you need
 //import { Tooltip, Toast, Popover } from 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+
 //import './normalize.css';
-import './style.css';
+//import './style.css';
 //import loadHome from './module/home';
 
-console.log('new todo list site');
+console.log('new todo list 2');
 //loadHeader();
 
 /*
