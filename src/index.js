@@ -1,10 +1,11 @@
-import './normalize.css';
-import './style.css';
-import loadHome from './module/home';
+//import './normalize.css';
+//import './style.css';
+//import loadHome from './module/home';
 
-console.log('new site');
+console.log('new todo list site');
 //loadHeader();
 
+/*
 function clear() {
     const container = document.getElementById('content');
     let conLength = container.children.length;
@@ -24,4 +25,4 @@ logoBtn.onclick = () => {
     loadFooter();
     initFooterBtn()
 };
-
+*/
