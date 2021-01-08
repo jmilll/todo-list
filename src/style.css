@@ -58,6 +58,8 @@ body {
     background-color: var(--background-color);
     padding: 1em;
     border-radius: .4em;
+    display: flex;
+    flex-direction: column;
 }
 
 .todo {
@@ -95,13 +97,47 @@ body {
     color: var(--bs-gray);
 }
 
+/* -- TASK SUBMIT FORM -- */
+.task-submit {
+    background-color: darkgray;
+    padding: 1em;
+    border-radius: .4em;
+}
+
+
+
+
+.form-features {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+.form-btns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-btns {
+    background-color: darkgray;
+    border-radius: 50%;
+    padding: 1em;
+}
+
 /* -- CUSTOM BOOTSTRAP -- */
 
+.no-border {
+    border-style: none;
+}
 
 .btn-outline-dark {
     color: #212529;
     border-color: #212529;
     align-self: flex-start;
+}
+
+#add-task-btn {
+    align-self: flex-end;
 }
 
 /* -- HOME PAGE -- */
