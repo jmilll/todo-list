@@ -26,6 +26,25 @@ newTaskBtn.addEventListener('click', () => {
     document.querySelector('.task-submit').classList.remove('visually-hidden')
 });
 
+const cancelTaskBtn = document.querySelector('#cancel-btn');
+cancelTaskBtn.addEventListener('click', () => {
+    newTaskBtn.classList.remove('visually-hidden');
+    document.querySelector('.task-submit').classList.add('visually-hidden')
+});
+
+const submitTaskBtn = document.querySelector('#submit-task-btn');
+submitTaskBtn.addEventListener('click', () => {
+    
+   // if (!task-name.value) return;
+
+    newTaskBtn.classList.remove('visually-hidden');
+    document.querySelector('.task-submit').classList.add('visually-hidden')
+
+    console.log('submit form');
+});
+
+
+
 /*
 
 /*
