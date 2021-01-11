@@ -97,6 +97,28 @@ body {
     color: var(--bs-gray);
 }
 
+/* -- PROJECT EDIT FORM -- */
+
+.edit {
+    flex-flow: column nowrap;
+}
+
+#project-title {
+    font-size: calc(1.625rem + 4.5vw);
+    font-weight: 300;
+    line-height: 1.2;
+    background: none;
+    margin-bottom: .5rem;
+}
+
+#project-description {
+    color: rgb(30, 30, 30);
+    font-size: 1em;
+    background: none;
+    margin-bottom: 1rem;
+}
+
+
 /* -- TASK SUBMIT FORM -- */
 .task-submit {
     padding: 1em;
@@ -115,6 +137,10 @@ body {
     justify-content: flex-start;
 }
 
+.form-btn-container {
+    display: flex;
+    justify-content: space-between;
+}
 .form-btns {
     display: flex;
     justify-content: flex-end;
@@ -138,6 +164,20 @@ body {
 }
 
 /* -- CUSTOM BOOTSTRAP -- */
+
+.form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    margin: 0 .7em 0 0;
+    border-color: #212529;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+.form-check-input:checked {
+    border-color: #212529;
+    background-color: var(--bs-gray);
+}
+
 .input-group {
     position: relative;
     display: flex;
