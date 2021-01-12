@@ -29,23 +29,71 @@ body {
 .category-container {
     height: 100%;
     width: 30%;
-    background-color: rgb(159, 172, 194);
+    background-color: rgb(245 245 245);
     padding: 1em;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .categories {
-    background-color: rgb(204, 189, 157);
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.sub-head {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    margin-top: -1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid var(--bs-gray-dark);
+}
+
+.sub-heading-edit {
+    /*border: 1px solid var(--bs-gray-dark);*/
+    background-color: var(--bs-gray-dark);
+    border-radius: .3em;
+    padding: .6em .6em;
+    margin-bottom: 1em;
+}
+.form-control.new {
+    margin-bottom: .6em;
+}
+
+.form-btns.new {
+    margin-top: 1.5em;
+}
+
+#add-project-btn {
+    align-self: flex-end;
 }
 
 .item {
     margin-bottom: 1em;
     cursor: pointer;
+    padding: .5em;
 }
 
+.item:hover {
+    box-shadow:0px 0px 0px 1px rgb(52 58 64) inset;
+    /*border: 1px solid rgb(52 58 64);
+    background-color: rgb(52 58 64);
+    color: white;*/
+    border-radius: .3em;
+    transition: .2s;
+    transform: translateX(3px);
+}
+
+.item.select {
+    background-color: rgb(52 58 64);
+    border-radius: .3em;
+    color: white;
+}
 .tasks-container {
     height: 100%;
     width: 70%;
-    background-color: rgb(161, 161, 161);
+    background-color: rgb(235 235 235);
     padding: 1em;
 }
 

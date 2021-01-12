@@ -14,9 +14,39 @@
 console.log('new todo list 2');
 //loadHeader();
 
-// ---------- DOM CONTROL ---------- 
-/*
-*/
+// ---------- DOM CONTROL ---------- /**/
+
+
+
+//
+// CATEGORY ITEM CONTROL
+const categoryItem = document.querySelectorAll('.item');
+categoryItem.forEach(item => item.addEventListener('click', () => {
+    for (let i = 0; i<categoryItem.length; i++) {
+        categoryItem[i].classList.remove('select')
+    }
+    //console.log(categoryItem);
+    item.classList.add('select');
+}))
+
+const newProjectBtn = document.getElementById('new-project-btn');
+newProjectBtn.addEventListener('click', () => {
+
+    newProjectBtn.toggleAttribute('disabled');
+});
+
+const saveNewBtn = document.getElementById('save-new-btn');
+saveNewBtn.addEventListener('click', () => {
+
+    newProjectBtn.toggleAttribute('disabled');
+});
+
+const cancelNewBtn = document.getElementById('cancel-new-btn');
+cancelNewBtn.addEventListener('click', () => {
+
+    console.log('cancel-new-project');
+});
+
 //
 // EDIT PROJECT INFO BUTTONS
 const editProjectBtn = document.getElementById('edit-project-btn');
@@ -55,7 +85,7 @@ const taskCheckBoxes2 = document.querySelectorAll('div.todo input.form-check-inp
 taskCheckBoxes2.forEach(box => box.addEventListener('click', () => {
     //box.classList.toggle('checked');
     box.parentElement.querySelector('p').classList.toggle('complete');
-    console.log('checkme');
+    console.log('checkme2');
 }))
 
 const taskCheckBoxes = document.querySelectorAll('div.todo div.checkbox');
@@ -95,7 +125,23 @@ optionsBtn.addEventListener('click', () => {
     document.querySelector('.form-features').classList.toggle('visually-hidden')
 });
 
-/*
+
+
+
+// ---------- OBJECT CREATION  ---------- /**/
+
+const todoItem = (taskName, taskDescription, date, priority) => {
+    return { 
+        taskName,
+        taskDescription, 
+        date,
+        priority, 
+    };
+};
+
+let itemOne = todoItem('Walk the dog','','','low');
+console.log(itemOne);
+
 
 /*
 function clear() {
