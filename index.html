@@ -29,7 +29,7 @@
                    New
                 </button>
             </div>
-            <div class="sub-heading-edit">
+            <div class="sub-heading-edit visually-hidden">
                 <input type="text" class="form-control new" id="new-title" placeholder="Project" required>
                 <input type="text" class="form-control new" id="new-description" rows="1" placeholder="Description">
                 <div class="form-btns new">
@@ -80,19 +80,21 @@
                 <div class="divider"></div>
                 <!-- -->
 
-                <div class="todo" data-value="0">
-                    <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
-
-                    <div class="checkbox"></div>
-                    <p class="todo-description">Default short task</p>
-                </div>
-                <div class="todo" data-value="1">
-                    <div class="checkbox"></div>
-                    <p class="todo-description">Default med text Default med text Default med text.</p>
-                </div>
-                <div class="todo" data-value="2">
-                    <div class="checkbox checked"></div>
-                    <p class="todo-description complete">The viewBox attribute is required if you wish to resize icons with background-size. Note that the xmlns attribute is required.</p>
+                <div class="todo-container">
+                    <div class="todo" data-value="0">
+                        <input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">
+    
+                        <div class="checkbox"></div>
+                        <p class="todo-description">Default short task</p>
+                    </div>
+                    <div class="todo" data-value="1">
+                        <div class="checkbox"></div>
+                        <p class="todo-description">Default med text Default med text Default med text.</p>
+                    </div>
+                    <div class="todo" data-value="2">
+                        <div class="checkbox checked"></div>
+                        <p class="todo-description complete">The viewBox attribute is required if you wish to resize icons with background-size. Note that the xmlns attribute is required.</p>
+                    </div>
                 </div>
 
                 <button type="button" class="btn btn-outline-dark" id="add-task-btn">
@@ -120,9 +122,9 @@
                                 </svg> 
                             </div>
                             <select class="form-select" id="priority-select">
-                                <option selected>Low</option>
-                                <option value="1">Medium</option>
-                                <option value="2">High</option>
+                                <option value="1" selected>Low</option>
+                                <option value="2">Medium</option>
+                                <option value="3">High</option>
                             </select> 
                         </div>
                     </div>
