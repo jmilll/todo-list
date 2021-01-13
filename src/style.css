@@ -119,6 +119,10 @@ body {
     align-items: center;
 }
 
+.todo:hover {
+    transition: .2s;
+    transform: translateX(3px);
+}
 .todo-description {
     margin: 1em 0;
 }
