@@ -16,83 +16,103 @@ console.log('new todo list 2');
 
 //********** ---------- TASK CREATION ----------********** /**/
 
-const todoItem = (taskName, taskDescription, date, priority, checked) => {
+
+
+
+/*
+function createTestTask() {const todoContainer = document.querySelector('.todo-container');
+    const newTodo = document.createElement('div');
+    newTodo.setAttribute('class', 'todo');
+    //value needs to be variable
+    newTodo.setAttribute('data-value', '0');
+
+    const checkbox = document.createElement('input');
+    checkbox.classList.add('form-check-input');
+    checkbox.type = 'checkbox';
+    checkbox.value = '';
+    checkbox.setAttribute('aria-label', 'Checkbox for following text input');
+
+
+    const taskTitle = document.createElement('p');
+    taskTitle.classList.add('todo-title');
+    //text needs to be variable
+    taskTitle.textContent = 'test content';
+
+    const taskDate = document.createElement('p');
+    taskDate.classList.add('todo-date');
+    //text needs to be variable
+    taskDate.textContent = '12/12/20';
+
+    const taskPriority = document.createElement('p');
+    taskPriority.classList.add('todo-priority');
+    //text needs to be variable
+    taskPriority.textContent = 'High';
+
+    todoContainer.appendChild(newTodo);
+    newTodo.appendChild(checkbox);
+    newTodo.appendChild(taskTitle)
+    newTodo.appendChild(taskDate)
+    newTodo.appendChild(taskPriority);
+}*/
+const todoItem = (taskName, date, priority, checked) => {
     return { 
-        taskName,
-        taskDescription, 
+        taskName, 
         date,
         priority,
         checked, 
     };
 };
 
-
-
-function createTestTask() {
+function createTask(taskName, date, priority, checked) {
+    
     const todoContainer = document.querySelector('.todo-container');
     const newTodo = document.createElement('div');
     newTodo.setAttribute('class', 'todo');
     //value needs to be variable
-    newTodo.setAttribute('data-value', '0');
+    newTodo.setAttribute('data-value', (taskList.length -1));
 
     const checkbox = document.createElement('input');
     checkbox.classList.add('form-check-input');
     checkbox.type = 'checkbox';
     checkbox.value = '';
+    checkbox.checked = checked;
     checkbox.setAttribute('aria-label', 'Checkbox for following text input');
 
-    const description = document.createElement('p');
-    description.classList.add('todo-description');
-    //text needs to be variable
-    description.textContent = 'test content';
 
+    const taskTitle = document.createElement('p');
+    taskTitle.classList.add('todo-title');
+    taskTitle.textContent = taskName;
+
+    const taskDate = document.createElement('p');
+    taskDate.classList.add('todo-date');
+    taskDate.textContent = date;
+
+    const taskPriority = document.createElement('p');
+    taskPriority.classList.add('todo-priority');
+    taskPriority.textContent = priority;
 
     todoContainer.appendChild(newTodo);
     newTodo.appendChild(checkbox);
-    newTodo.appendChild(description);
-}
-
-function createTask(taskName, taskDescription, date, priority, checked) {
-    const todoContainer = document.querySelector('.todo-container');
-    const newTodo = document.createElement('div');
-    newTodo.setAttribute('class', 'todo');
-    //value needs to be variable
-    newTodo.setAttribute('data-value', '0');
-
-    const checkbox = document.createElement('input');
-    checkbox.classList.add('form-check-input');
-    checkbox.type = 'checkbox';
-    checkbox.value = '';
-    checkbox.setAttribute('aria-label', 'Checkbox for following text input');
-
-    const description = document.createElement('p');
-    description.classList.add('todo-description');
-    //text needs to be variable
-    description.textContent = 'test content';
-
-
-    todoContainer.appendChild(newTodo);
-    newTodo.appendChild(checkbox);
-    newTodo.appendChild(description);
+    newTodo.appendChild(taskTitle)
+    newTodo.appendChild(taskDate)
+    newTodo.appendChild(taskPriority);
 }
 
 const taskList = [];
 
 const addTaskForm = (() => {
     const _name = document.querySelector('#task-name')
-    const _description = document.querySelector('#description-text')
     const _date= document.querySelector('#date-select')
     const _priority = document.querySelector('#priority-select')
 
     //Get value of form inputs
     const _getValue = () => {
         let taskName = _name.value;
-        let taskDescription = _description.value;
         let date = _date.value;
         let priority = _priority.value;
         let checked = false;
 
-        return {taskName, taskDescription, date, priority, checked};
+        return {taskName, date, priority, checked};
         
     }
 
@@ -110,6 +130,17 @@ const addTaskForm = (() => {
     }
 })();
 
+function createNewTask () {
+    let taskName = addTaskForm.getTask().taskName;
+    let date = addTaskForm.getTask().date;
+    let priority = addTaskForm.getTask().priority;
+    let checked = addTaskForm.getTask().checked;
+
+    taskList.push(addTaskForm.getTask());
+    createTask(taskName, date, priority, checked);
+
+    console.log(taskList);
+}
 
 //if (!title.value || !author.value || !pages.value) return;
 
@@ -117,9 +148,11 @@ const addTaskForm = (() => {
 /*
 return taskList;
 taskList.push(addTaskForm.getTask())
-return taskList;
+
 addTaskForm._getValue()
 addTaskForm.getTask()
+
+addTaskForm.getTask().date
 
 const todoItem = (taskName, taskDescription, date, priority) => {
     return { 
