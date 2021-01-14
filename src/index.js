@@ -14,46 +14,18 @@
 console.log('new todo list 2');
 //loadHeader();
 
+//import renderTasks from './module/task-creation';
+
 //********** ---------- TASK CREATION ----------********** /**/
 
+const taskList = [
+    {taskName: "aa", date: "2021-01-19", priority: "1", checked: false},
+    {taskName: "bb", date: "2021-01-19", priority: "2", checked: true},
+    {taskName: "cc", date: "2021-01-19", priority: "3", checked: false}
+];
 
+renderTasks()
 
-
-/*
-function createTestTask() {const todoContainer = document.querySelector('.todo-container');
-    const newTodo = document.createElement('div');
-    newTodo.setAttribute('class', 'todo');
-    //value needs to be variable
-    newTodo.setAttribute('data-value', '0');
-
-    const checkbox = document.createElement('input');
-    checkbox.classList.add('form-check-input');
-    checkbox.type = 'checkbox';
-    checkbox.value = '';
-    checkbox.setAttribute('aria-label', 'Checkbox for following text input');
-
-
-    const taskTitle = document.createElement('p');
-    taskTitle.classList.add('todo-title');
-    //text needs to be variable
-    taskTitle.textContent = 'test content';
-
-    const taskDate = document.createElement('p');
-    taskDate.classList.add('todo-date');
-    //text needs to be variable
-    taskDate.textContent = '12/12/20';
-
-    const taskPriority = document.createElement('p');
-    taskPriority.classList.add('todo-priority');
-    //text needs to be variable
-    taskPriority.textContent = 'High';
-
-    todoContainer.appendChild(newTodo);
-    newTodo.appendChild(checkbox);
-    newTodo.appendChild(taskTitle)
-    newTodo.appendChild(taskDate)
-    newTodo.appendChild(taskPriority);
-}*/
 const todoItem = (taskName, date, priority, checked) => {
     return { 
         taskName, 
@@ -63,13 +35,13 @@ const todoItem = (taskName, date, priority, checked) => {
     };
 };
 
-function createTask(taskName, date, priority, checked) {
-    
+function addTaskToDOM(taskName, date, priority, checked) {
+    let y = document.querySelector('.todo-container').childElementCount;
+
     const todoContainer = document.querySelector('.todo-container');
     const newTodo = document.createElement('div');
     newTodo.setAttribute('class', 'todo');
-    //value needs to be variable
-    newTodo.setAttribute('data-value', (taskList.length -1));
+    newTodo.setAttribute('data-value', y);
 
     const checkbox = document.createElement('input');
     checkbox.classList.add('form-check-input');
@@ -81,6 +53,9 @@ function createTask(taskName, date, priority, checked) {
 
     const taskTitle = document.createElement('p');
     taskTitle.classList.add('todo-title');
+    if (checked === true) {
+        taskTitle.classList.add('complete');
+    }
     taskTitle.textContent = taskName;
 
     const taskDate = document.createElement('p');
@@ -98,7 +73,7 @@ function createTask(taskName, date, priority, checked) {
     newTodo.appendChild(taskPriority);
 }
 
-const taskList = [];
+
 
 const addTaskForm = (() => {
     const _name = document.querySelector('#task-name')
@@ -111,21 +86,14 @@ const addTaskForm = (() => {
         let date = _date.value;
         let priority = _priority.value;
         let checked = false;
-
         return {taskName, date, priority, checked};
         
     }
-
-
     const getTask = () => {
        return _getValue();
     }
 
-    //todoItem(taskName, taskDescription, date, priority);
-
-
     return {
-        _getValue,
         getTask,
     }
 })();
@@ -137,34 +105,22 @@ function createNewTask () {
     let checked = addTaskForm.getTask().checked;
 
     taskList.push(addTaskForm.getTask());
-    createTask(taskName, date, priority, checked);
+    addTaskToDOM(taskName, date, priority, checked);
 
     console.log(taskList);
 }
 
-//if (!title.value || !author.value || !pages.value) return;
+function clearTasks() {
+    const tasks = document.querySelectorAll('.todo');
+    tasks.forEach(t => document.querySelector('.todo-container').removeChild(t));
+}
 
+function renderTasks() {
+    taskList.forEach(task => {
+        addTaskToDOM(task.taskName, task.date, task.priority, task.checked)
+    });
+}
 
-/*
-return taskList;
-taskList.push(addTaskForm.getTask())
-
-addTaskForm._getValue()
-addTaskForm.getTask()
-
-addTaskForm.getTask().date
-
-const todoItem = (taskName, taskDescription, date, priority) => {
-    return { 
-        taskName,
-        taskDescription, 
-        date,
-        priority, 
-    };
-};
-let itemOne = todoItem('Walk the dog','','','low');
-console.log(itemOne);
-*/
 
 
 // **********---------- DOM CONTROL ----------********** /**/
@@ -240,15 +196,26 @@ cancelEditBtn.addEventListener('click', () => {
 // TASK DOM EVENTS **********
 
 //--DYNAMICALLY SELECT BUTTONS INCLUDING ONES THAT ARE NOT CREATED--
+//CHECKBOXES
 const con = document.querySelector('#content');
 con.addEventListener('click', (e) => {
     if (!e.target) { return; }
     if (e.target.matches('.form-check-input')) {
         console.log(e.target.checked);
         e.target.parentElement.querySelector('p').classList.toggle('complete');
+
+        //get value of clicked div to correspond to its spot in tasklist
+        let a = e.target.parentElement.dataset.value;
+
+        //change checked value when clicked 
+        taskList[a].checked = e.target.checked
+
+        //console.log(taskList[a])
+        //console.log()
     }
 
 })
+
 /* without dynamic
 const taskCheckBoxes2 = document.querySelectorAll('div.todo input.form-check-input');
 taskCheckBoxes2.forEach(box => box.addEventListener('click', () => {
@@ -256,13 +223,17 @@ taskCheckBoxes2.forEach(box => box.addEventListener('click', () => {
     box.parentElement.querySelector('p').classList.toggle('complete');
     console.log('checkme2');
 }))
-*/
+
+//not using dynamic
 const taskCheckBoxes = document.querySelectorAll('div.todo div.checkbox');
 taskCheckBoxes.forEach(box => box.addEventListener('click', () => {
     box.classList.toggle('checked');
     box.parentElement.querySelector('p').classList.toggle('complete');
     console.log('checkme');
-}))
+
+
+    
+}))*/
 
 
 
@@ -285,14 +256,18 @@ cancelTaskBtn.addEventListener('click', () => {
 });
 
 const submitTaskBtn = document.querySelector('#submit-task-btn');
-submitTaskBtn.addEventListener('click', () => {
+submitTaskBtn.addEventListener('click', (e) => {
     //stop empty task add
    if (!addTaskForm.getTask().taskName) return;
+   //prevent page refresh on submit
+   e.preventDefault();
 
     newTaskBtn.classList.remove('visually-hidden');
     document.querySelector('.task-submit').classList.add('visually-hidden')
+    createNewTask();
 
-    console.log('submit form');
+    //reset form bc prevented default operations
+    document.querySelector(".task-submit").reset();
 });
 
 const optionsBtn = document.querySelector('#options-btn');
