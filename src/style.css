@@ -102,12 +102,16 @@ body {
     flex-flow: row nowrap;
 }
 
+.project-info {
+    width: 100%;
+}
 .task {
     background-color: var(--background-color);
     padding: 1em;
     border-radius: .4em;
     display: flex;
     flex-direction: column;
+    margin-bottom: 2em;
 }
 
 .todo {

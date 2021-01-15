@@ -15,6 +15,104 @@ console.log('new todo list 2');
 //loadHeader();
 
 //import renderTasks from './module/task-creation';
+//********** ---------- PROJECTS  ----------********** /**/
+
+let allProjects = []
+
+const newProject = (name, description) => {
+    allProjects.push({name,
+    description,
+    todo: [],
+    active: true,
+    })
+
+    console.log(allProjects);
+}
+//newProject('Test', 'Testing out the project')
+
+const addProjectToDOM = (name, description) => {
+    const taskContainer = document.querySelector('.tasks-container');
+
+    const project = document.createElement('div');
+    project.classList.add('task');
+
+    const heading = document.createElement('div');
+    heading.classList.add('task-heading');
+        const headingIfo = document.createElement('div');
+        headingIfo.classList.add('project-info');
+            const title = document.createElement('h1');
+            title.classList.add('display-1');
+            //content from project
+            title.textContent = name;
+            const desc = document.createElement('p');
+            desc.classList.add('task-description');
+            //content from project
+            desc.textContent = description;
+        const editInfoBtn = document.createElement('button');
+        editInfoBtn.type = 'button';
+        editInfoBtn.classList.add('btn');
+        editInfoBtn.classList.add('btn-outline-dark');
+        editInfoBtn.classList.add('no-border');
+        editInfoBtn.setAttribute('id', 'edit-project-btn');
+            const iconEdit = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+            </svg>`;
+
+
+    const headingEdit = document.createElement('div');
+    headingEdit.classList.add('task-heading');
+    headingEdit.classList.add('edit');
+    headingEdit.classList.add('visually-hidden');
+        const projectTitleEdit = document.createElement('input');
+            projectTitleEdit.type = 'text';
+            projectTitleEdit.classList.add('form-control');
+            projectTitleEdit.setAttribute('id', 'project-title');
+            //content from project
+            projectTitleEdit.placeholder = name;
+            projectTitleEdit.required = true;
+        const projectDescriptionEdit = document.createElement('input');
+            projectDescriptionEdit.type = 'text';
+            projectDescriptionEdit.classList.add('form-control');
+            projectDescriptionEdit.setAttribute('id', 'project-description');
+            //content from project
+            projectDescriptionEdit.placeholder = description;
+        const formBtnContainer = document.createElement('div');
+
+    const divider = document.createElement('div');
+    divider.classList.add('divider');
+
+    const todoContain = document.createElement('div');
+    todoContain.classList.add('todo-container');
+
+    const addTaskBtn = document.createElement('button');
+
+
+    const taskSubmit = document.createElement('form');
+
+
+
+    taskContainer.appendChild(project);
+    project.appendChild(heading);
+        heading.appendChild(headingIfo);
+            headingIfo.appendChild(title);
+            headingIfo.appendChild(desc);
+        heading.appendChild(editInfoBtn);
+            editInfoBtn.insertAdjacentHTML("beforeend", iconEdit);
+    project.appendChild(headingEdit);
+        headingEdit.appendChild(projectTitleEdit);
+        headingEdit.appendChild(projectDescriptionEdit);
+        headingEdit.appendChild(formBtnContainer);
+            formBtnContainer.appendChild();
+            formBtnContainer.appendChild();
+    project.appendChild(divider);
+}
+
+
+
+            /*const iconEdit = document.createElement('svg');
+            iconEdit.xmlns = 'http://www.w3.org/2000/svg';
+            iconEdit.setAttribute('width', '16')
+            iconEdit.setAttribute('height', '16')*/
 
 //********** ---------- TASK CREATION ----------********** /**/
 
