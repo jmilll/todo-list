@@ -66,23 +66,30 @@ function addNewProject() {
     let desc = getAddProjectValues().desc;
 
 
-
+    //push project to array
     newProject(name, desc);
+    //create project in left side list
     addProjectToDOM(name);
-    loadProject(name, desc);
+    //push project info to task heading
+    loadProjectHeader(name, desc);
     
     console.log(allProjects);
 }
 
 
 function clearActiveProjects(){
+    //clear active in array
     allProjects.forEach(project => project.active = false);
+    //clear select class in DOM
+    //const items = document.querySelectorAll('.item')
+    //items.forEach(i => {i.classList.remove('select')})
+
 }
 
 
 
 //put project into task area
-const loadProject = (name, description) => {
+const loadProjectHeader = (name, description) => {
     const projectName = document.querySelector('div.project-info h1.display-1')
     const projectDescription = document.querySelector('div.project-info p.task-description')
 
@@ -114,6 +121,16 @@ function searchActive () {
     }
 }
 
+function loadActive() {
+    clearTasksDOM();
+    //add select css
+    document.querySelector('.categories').children[searchActive()].classList.add('select');
+    //load heading
+    loadProjectHeader(allProjects[searchActive()].name, allProjects[searchActive()].description);
+    //load tasks
+    renderTasks(allProjects[searchActive()].todo)
+}
+
 function renderProjects() {
     allProjects.forEach(project => {
         addProjectToDOM(project.name)
@@ -143,6 +160,8 @@ function addProjectToDOM(name) {
 
     categories.appendChild(projectDiv);
 }
+
+
 
 function clearProjectsDOM() {
     const categories = document.querySelector('.categories');
@@ -239,10 +258,11 @@ function createNewTask() {
     let priority = addTaskForm.getTask().priority;
     let checked = addTaskForm.getTask().checked;
 
-    taskList.push(addTaskForm.getTask());
+    //taskList.push(addTaskForm.getTask());
+    allProjects[searchActive()].todo.push(addTaskForm.getTask());
     addTaskToDOM(taskName, date, priority, checked);
 
-    console.log(taskList);
+    //console.log(taskList);
 }
 
 function clearTasksDOM() {
@@ -265,7 +285,7 @@ function renderTasks() {
 
 //renderTasks()
 renderProjects()
-
+loadActive()
 
 // **********---------- DOM CONTROL ----------********** /**/
 
@@ -273,12 +293,13 @@ renderProjects()
 
 //
 // PROJECT ITEM CONTROL **********
-//DYNAMIC
+
 const cat = document.querySelector('.categories');
 cat.addEventListener('click', (e) => {
     if (!e.target) { return; }
     if (e.target.matches('.item')) {
         const categoryItem = document.querySelectorAll('.item');
+        //remove selected from all projects ,then add to clicked project
         for (let i = 0; i<categoryItem.length; i++) {
             categoryItem[i].classList.remove('select')
         }
@@ -293,6 +314,12 @@ cat.addEventListener('click', (e) => {
 
         clearTasksDOM()
         renderTasks(specificProject.todo);
+
+        //populate heading from specific project
+        loadProjectHeader(allProjects[searchActive()].name, allProjects[searchActive()].description)
+
+        //edit allproject todo when changing/adding/checking tasks
+    
 
         //console.log(specificProject.todo)
     }
@@ -320,6 +347,15 @@ const saveNewBtn = document.getElementById('save-new-btn');
 saveNewBtn.addEventListener('click', () => {
     document.querySelector('.sub-heading-edit').classList.toggle('visually-hidden');
     newProjectBtn.toggleAttribute('disabled');
+
+    clearActiveProjects()
+
+    //clear select class in DOM
+    const items = document.querySelectorAll('.item')
+    items.forEach(i => {i.classList.remove('select')})
+
+    addNewProject()
+    loadActive()
 
     console.log('add-new-project');
 });
@@ -352,10 +388,11 @@ con.addEventListener('click', (e) => {
         let a = e.target.parentElement.dataset.value;
 
         //change checked value when clicked 
-        taskList[a].checked = e.target.checked
+        //taskList[a].checked = e.target.checked
+        allProjects[searchActive()].todo[a].checked = e.target.checked;
 
         //console.log(taskList[a])
-        //console.log()
+        console.log(a)
     }
 
 })
@@ -435,7 +472,11 @@ submitTaskBtn.addEventListener('click', (e) => {
 
     newTaskBtn.classList.remove('visually-hidden');
     document.querySelector('.task-submit').classList.add('visually-hidden')
+
     createNewTask();
+
+
+
 
     //reset form bc prevented default operations
     document.querySelector(".task-submit").reset();
