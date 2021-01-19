@@ -106,6 +106,45 @@ const loadProjectHeader = (name, description) => {
     //renderTasks()
 }
 
+const editProjectHeader = () => {
+    const editTitle = document.querySelector('#project-title')
+    const editDescription = document.querySelector('#project-description')
+
+    //empty field, return
+    if (editTitle.value === '') {return};
+
+    //editTitle.value
+    //editDescription.value 
+
+    //if (editDescription.value === '') {
+    //    editDescription.placeholder = 'Project Description'
+    //}
+
+    //change it in the DOM
+    //loadActive should use loadprojhead in it
+    loadProjectHeader(editTitle.value, editDescription.value );
+
+    //change it in the array
+    allProjects[searchActive()].name = editTitle.value
+    allProjects[searchActive()].description = editDescription.value
+
+    //change it on the project side
+    clearProjectsDOM()
+    renderProjects()
+    //loadActive()
+}
+
+const loadEdit = () => {    
+    const editTitle = document.querySelector('#project-title')
+    const editDescription = document.querySelector('#project-description')
+
+
+    editTitle.value = allProjects[searchActive()].name
+    editDescription.value = allProjects[searchActive()].description
+
+}
+
+
 function searchActive () {
     /*
     allProjects.forEach(project => {
@@ -354,8 +393,13 @@ saveNewBtn.addEventListener('click', () => {
     const items = document.querySelectorAll('.item')
     items.forEach(i => {i.classList.remove('select')})
 
+
+
     addNewProject()
     loadActive()
+
+    //clear inputs
+    clearNewProjectInput();
 
     console.log('add-new-project');
 });
@@ -365,11 +409,18 @@ cancelNewBtn.addEventListener('click', () => {
     document.querySelector('.sub-heading-edit').classList.toggle('visually-hidden');
     newProjectBtn.toggleAttribute('disabled');
 
+
+    //clear inputs
+    clearNewProjectInput();
+
     console.log('cancel-new-project');
 });
 
 
-
+const clearNewProjectInput = () => {
+    document.querySelector("#new-title").value = ''
+    document.querySelector("#new-description").value = ''
+}
 
 
 //
@@ -424,6 +475,8 @@ editProjectBtn.addEventListener('click', () => {
 
     const p = document.querySelectorAll('.task-heading');
     p.forEach(x => x.classList.toggle('visually-hidden'));
+
+    loadEdit();
 });
 
 const saveEditBtn = document.querySelector('#save-edit-btn');
@@ -434,8 +487,16 @@ saveEditBtn.addEventListener('click', () => {
    const p = document.querySelectorAll('.task-heading');
    p.forEach(x => x.classList.toggle('visually-hidden'));
 
+   editProjectHeader();
+   loadActive();
+   clearEditInput();
     console.log('save edit');
 });
+
+const clearEditInput = () => {
+    document.querySelector("#project-title").value = ''
+    document.querySelector("#project-description").value = ''
+}
 
 const cancelEditBtn = document.querySelector('#cancel-edit-btn');
 cancelEditBtn.addEventListener('click', () => {
@@ -445,6 +506,7 @@ cancelEditBtn.addEventListener('click', () => {
    const p = document.querySelectorAll('.task-heading');
    p.forEach(x => x.classList.toggle('visually-hidden'));
 
+    clearEditInput();
     console.log('cancel edit');
 });
 
