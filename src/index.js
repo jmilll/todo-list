@@ -328,7 +328,23 @@ loadActive()
 
 // **********---------- DOM CONTROL ----------********** /**/
 
+//click out of edit, closes all edits
+const closeAllEdit = () => {
+    const a = document.querySelector('.task-heading')
+    const b = document.querySelector('.task-heading.edit')
+    a.classList.remove('visually-hidden');
+    b.classList.add('visually-hidden');
 
+    const c = document.querySelector('#add-task-btn')
+    const d = document.querySelector('form.task-submit')
+    c.classList.remove('visually-hidden');
+    d.classList.add('visually-hidden');
+
+    const e = document.querySelector('#new-project-btn')
+    const f = document.querySelector('.sub-heading-edit')
+    e.disabled = false
+    f.classList.add('visually-hidden');
+}
 
 //
 // PROJECT ITEM CONTROL **********
@@ -361,6 +377,7 @@ cat.addEventListener('click', (e) => {
     
 
         //console.log(specificProject.todo)
+        closeAllEdit()
     }
 
 })
@@ -444,6 +461,8 @@ con.addEventListener('click', (e) => {
 
         //console.log(taskList[a])
         console.log(a)
+
+        closeAllEdit()
     }
 
 })
