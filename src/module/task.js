@@ -32,13 +32,16 @@ const _addTaskToDOM = (taskName, date, priority, checked) => {
 
     const taskPriority = document.createElement('p');
     taskPriority.classList.add('todo-priority');
-    taskPriority.textContent = priority;
+    
     if (priority === '1') {
         taskPriority.classList.add('low');
+        taskPriority.textContent = 'Low';
     } else if (priority === '2') {
         taskPriority.classList.add('med');
+        taskPriority.textContent = 'Mid';
     } else {
         taskPriority.classList.add('high');
+        taskPriority.textContent = 'High';
     };
 
     todoContainer.appendChild(newTodo);
