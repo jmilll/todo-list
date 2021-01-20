@@ -1,5 +1,5 @@
 //********** ---------- TASK CREATION ----------********** /**/
-
+/*
 const todoItem = (taskName, date, priority, checked) => {
     return { 
         taskName, 
@@ -8,8 +8,8 @@ const todoItem = (taskName, date, priority, checked) => {
         checked, 
     };
 };
-
-function addTaskToDOM(taskName, date, priority, checked) {
+*/
+const _addTaskToDOM = (taskName, date, priority, checked) => {
     let y = document.querySelector('.todo-container').childElementCount;
 
     const todoContainer = document.querySelector('.todo-container');
@@ -49,17 +49,15 @@ function addTaskToDOM(taskName, date, priority, checked) {
 
     todoContainer.appendChild(newTodo);
     newTodo.appendChild(checkbox);
-    newTodo.appendChild(taskTitle)
-    newTodo.appendChild(taskDate)
+    newTodo.appendChild(taskTitle);
+    newTodo.appendChild(taskDate);
     newTodo.appendChild(taskPriority);
 }
 
-
-
 const addTaskForm = (() => {
-    const _name = document.querySelector('#task-name')
-    const _date= document.querySelector('#date-select')
-    const _priority = document.querySelector('#priority-select')
+    const _name = document.querySelector('#task-name');
+    const _date= document.querySelector('#date-select');
+    const _priority = document.querySelector('#priority-select');
 
     //Get value of form inputs
     const _getValue = () => {
@@ -69,40 +67,35 @@ const addTaskForm = (() => {
         let checked = false;
         return {taskName, date, priority, checked};
         
-    }
+    };
     const getTask = () => {
        return _getValue();
-    }
+    };
 
     return {
         getTask,
-    }
+    };
 })();
 
-function createNewTask() {
+const createNewTask = () => {
     let taskName = addTaskForm.getTask().taskName;
     let date = addTaskForm.getTask().date;
     let priority = addTaskForm.getTask().priority;
     let checked = addTaskForm.getTask().checked;
 
     allProjects[searchActive()].todo.push(addTaskForm.getTask());
-    addTaskToDOM(taskName, date, priority, checked);
+    _addTaskToDOM(taskName, date, priority, checked);
 }
 
-function clearTasksDOM() {
+const clearTasksDOM = () => {
     const tasks = document.querySelectorAll('.todo');
     tasks.forEach(t => document.querySelector('.todo-container').removeChild(t));
-}
+};
 
-function renderTasks(list) {
+const renderTasks = (list) => {
     list.forEach(task => {
-        addTaskToDOM(task.taskName, task.date, task.priority, task.checked)
+        _addTaskToDOM(task.taskName, task.date, task.priority, task.checked);
     });
-}
+};
 
-function loadHome() {
-    createMain()
-    createCopy() 
-}
-
-export default loadHome;
+export default {clearTasksDOM, renderTasks, createNewTask };
