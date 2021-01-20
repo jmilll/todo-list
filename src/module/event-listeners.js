@@ -74,7 +74,11 @@ const projectListeners = () => {
     });
 
     const saveNewBtn = document.getElementById('save-new-btn');
-    saveNewBtn.addEventListener('click', () => {
+    saveNewBtn.addEventListener('click', (e) => {
+        //empty title cancel
+        if (!document.querySelector('#new-title').value) {return};
+        e.preventDefault();
+
         document.querySelector('.sub-heading-edit').classList.toggle('visually-hidden');
         newProjectBtn.toggleAttribute('disabled');
 

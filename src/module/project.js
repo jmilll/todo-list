@@ -13,7 +13,6 @@ const newProject = (name, description) => {
 
 };
 
-//when his save on new project button
 const addNewProject = () => {
     let name = _getAddProjectValues().name;
     let desc = _getAddProjectValues().desc;

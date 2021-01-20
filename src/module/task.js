@@ -2,16 +2,7 @@ import {allProjects} from '../index';
 import {searchActive} from './project';
 
 //********** ---------- TASK CREATION ----------**********
-/*
-const todoItem = (taskName, date, priority, checked) => {
-    return { 
-        taskName, 
-        date,
-        priority,
-        checked, 
-    };
-};
-*/
+
 const _addTaskToDOM = (taskName, date, priority, checked) => {
     let y = document.querySelector('.todo-container').childElementCount;
 
@@ -56,32 +47,7 @@ const _addTaskToDOM = (taskName, date, priority, checked) => {
     newTodo.appendChild(taskDate);
     newTodo.appendChild(taskPriority);
 }
-/* before packaging
-const addTaskForm = (() => {
-    const _name = document.querySelector('#task-name');
-    const _date= document.querySelector('#date-select');
-    const _priority = document.querySelector('#priority-select');
 
-    //Get value of form inputs
-    const _getValue = () => {
-        let taskName = _name.value;
-        let date = _date.value;
-        let priority = _priority.value;
-        let checked = false;
-        return {taskName, date, priority, checked};
-        
-    };
-    const getTask = () => {
-       return _getValue();
-    };
-
-    return {
-        getTask,
-    };
-})();
-*/
-
-//add addTaskFormExport for packaging bc of scope
 const addTaskFormExport = () => {
     const taskName = document.querySelector('#task-name').value;
     const date = document.querySelector('#date-select').value;
@@ -90,10 +56,6 @@ const addTaskFormExport = () => {
     
     return {taskName, date, priority, checked};
 };
-
-
-
-
 
 const createNewTask = () => {
     let taskName = addTaskFormExport().taskName;
@@ -105,20 +67,6 @@ const createNewTask = () => {
     _addTaskToDOM(taskName, date, priority, checked);
 }
 
-/*
-const createNewTask = () => {
-    let taskName = addTaskForm.getTask().taskName;
-    let date = addTaskForm.getTask().date;
-    let priority = addTaskForm.getTask().priority;
-    let checked = addTaskForm.getTask().checked;
-
-    allProjects[searchActive()].todo.push(addTaskForm.getTask());
-    _addTaskToDOM(taskName, date, priority, checked);
-}
-*/
-/*
-
-*/
 const clearTasksDOM = () => {
     const tasks = document.querySelectorAll('.todo');
     tasks.forEach(t => document.querySelector('.todo-container').removeChild(t));
