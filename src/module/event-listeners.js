@@ -1,3 +1,17 @@
+
+import {allProjects} from '../index';
+import {clearTasksDOM, renderTasks, createNewTask } from './task';
+import {
+    //renderProjects,
+    addNewProject, 
+    clearActiveProjects, 
+    loadProjectHeader, 
+    editProjectHeader, 
+    loadEdit, 
+    searchActive, 
+    loadActive,
+} from './project';
+
 //********** PROJECT CONTROL **********
 
 //click outside of edit, closes all edits

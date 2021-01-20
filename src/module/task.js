@@ -1,4 +1,4 @@
-//********** ---------- TASK CREATION ----------********** /**/
+//********** ---------- TASK CREATION ----------**********
 /*
 const todoItem = (taskName, date, priority, checked) => {
     return { 

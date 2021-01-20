@@ -16,10 +16,11 @@ console.log('new todo list p');
 
 //import renderTasks from './module/task-creation';
 
+import {todoListeners, projectListeners} from './module/event-listeners';
+import {renderProjects, loadActive} from './module/project';
 
 
-
-//let allProjects = []
+//let allProjects = [];
 
 let allProjects = [
     {name: 'Default',
@@ -39,8 +40,10 @@ let allProjects = [
     ],
     active: false,
     },
-]
+];
 
 
-renderProjects()
-loadActive()
+renderProjects();
+loadActive();
+
+export default {allProjects};
