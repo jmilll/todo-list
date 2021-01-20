@@ -1,6 +1,6 @@
 
 import {allProjects} from '../index';
-import {clearTasksDOM, renderTasks, createNewTask } from './task';
+import {clearTasksDOM, renderTasks, createNewTask, addTaskFormExport} from './task';
 import {
     //renderProjects,
     addNewProject, 
@@ -171,7 +171,7 @@ const todoListeners = () => {
     const submitTaskBtn = document.querySelector('#submit-task-btn');
     submitTaskBtn.addEventListener('click', (e) => {
         //stop empty task add
-        if (!addTaskForm.getTask().taskName) return;
+        if (!addTaskFormExport().taskName) return;
         //prevent page refresh on submit
         e.preventDefault();
 
@@ -184,10 +184,27 @@ const todoListeners = () => {
         document.querySelector(".task-submit").reset();
     });
 
+    /*
+    const submitTaskBtn = document.querySelector('#submit-task-btn');
+    submitTaskBtn.addEventListener('click', (e) => {
+        //stop empty task add
+        if (!addTaskForm.getTask().taskName) return;
+        //prevent page refresh on submit
+        e.preventDefault();
+
+        newTaskBtn.classList.remove('visually-hidden');
+        document.querySelector('.task-submit').classList.add('visually-hidden');
+
+        createNewTask();
+
+        //reset form bc prevented default operations
+        document.querySelector(".task-submit").reset();
+    });
+    */
     const optionsBtn = document.querySelector('#options-btn');
     optionsBtn.addEventListener('click', () => {
         document.querySelector('.form-features').classList.toggle('visually-hidden');
     });
 };
 
-export default {todoListeners, projectListeners};
+export {todoListeners, projectListeners};

@@ -129,7 +129,7 @@ const clearProjectsDOM = () => {
     };
 };
 
-export default {
+export {
     renderProjects,
     addNewProject, 
     clearActiveProjects, 

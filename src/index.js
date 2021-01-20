@@ -16,6 +16,9 @@ console.log('new todo list p');
 
 //import renderTasks from './module/task-creation';
 
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './style.css';
+//../node_modules/bootstrap/dist/css/bootstrap.min.css
 import {todoListeners, projectListeners} from './module/event-listeners';
 import {renderProjects, loadActive} from './module/project';
 
@@ -46,4 +49,7 @@ let allProjects = [
 renderProjects();
 loadActive();
 
-export default {allProjects};
+todoListeners();
+projectListeners();
+
+export {allProjects};

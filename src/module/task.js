@@ -1,3 +1,6 @@
+import {allProjects} from '../index';
+import {searchActive} from './project';
+
 //********** ---------- TASK CREATION ----------**********
 /*
 const todoItem = (taskName, date, priority, checked) => {
@@ -53,7 +56,7 @@ const _addTaskToDOM = (taskName, date, priority, checked) => {
     newTodo.appendChild(taskDate);
     newTodo.appendChild(taskPriority);
 }
-
+/* before packaging
 const addTaskForm = (() => {
     const _name = document.querySelector('#task-name');
     const _date= document.querySelector('#date-select');
@@ -76,7 +79,33 @@ const addTaskForm = (() => {
         getTask,
     };
 })();
+*/
 
+//add addTaskFormExport for packaging bc of scope
+const addTaskFormExport = () => {
+    const taskName = document.querySelector('#task-name').value;
+    const date = document.querySelector('#date-select').value;
+    const priority = document.querySelector('#priority-select').value;
+    const checked = false;
+    
+    return {taskName, date, priority, checked};
+};
+
+
+
+
+
+const createNewTask = () => {
+    let taskName = addTaskFormExport().taskName;
+    let date = addTaskFormExport().date;
+    let priority = addTaskFormExport().priority;
+    let checked = addTaskFormExport().checked;
+
+    allProjects[searchActive()].todo.push(addTaskFormExport());
+    _addTaskToDOM(taskName, date, priority, checked);
+}
+
+/*
 const createNewTask = () => {
     let taskName = addTaskForm.getTask().taskName;
     let date = addTaskForm.getTask().date;
@@ -86,7 +115,10 @@ const createNewTask = () => {
     allProjects[searchActive()].todo.push(addTaskForm.getTask());
     _addTaskToDOM(taskName, date, priority, checked);
 }
+*/
+/*
 
+*/
 const clearTasksDOM = () => {
     const tasks = document.querySelectorAll('.todo');
     tasks.forEach(t => document.querySelector('.todo-container').removeChild(t));
@@ -98,4 +130,4 @@ const renderTasks = (list) => {
     });
 };
 
-export default {clearTasksDOM, renderTasks, createNewTask };
+export {clearTasksDOM, renderTasks, createNewTask, addTaskFormExport };
