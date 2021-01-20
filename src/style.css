@@ -127,20 +127,34 @@ body {
     transition: .2s;
     transform: translateX(3px);
 }
+
 .todo-title {
     margin: 1em 0;
-    background-color: cornflowerblue;
+    flex-grow: 1;
 }
 
 .todo-date {
-    background-color: pink;
-    margin: 0;
+    margin: 0 0 0 2em;
+    color: grey;
+    white-space: nowrap;
 }
 
 .todo-priority {
-    background-color: green;
-    margin: 0;
+    margin: 0 0 0 2em;
 }
+
+.low {
+    color: grey;
+}
+
+.med {
+    color: goldenrod;
+}
+
+.high {
+    color: crimson;
+}
+
 .checkbox {
     /*width: 1.5em;
     height: 1.5em;*/
