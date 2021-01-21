@@ -18,16 +18,12 @@
                 <h1>Projects</h1>
                 <div class="divider"></div>
             </div>
-            <div class="sub-head">
-                <button type="button" class="btn btn-outline-dark" id="view-all-btn">
-                    View All
-                </button>
-                <button type="button" class="btn btn-outline-dark" id="new-project-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
-                      </svg>
-                   New
-                </button>
+            <div class="categories">
+                <!--
+                <div data-value="0" class="item">Default</div>
+                <div data-value="1" class="item">Groceries</div>
+                <div data-value="2" class="item">Vacation</div>
+                <div data-value="3" class="item">House</div>-->
             </div>
             <form class="sub-heading-edit visually-hidden">
                 <input type="text" class="form-control new" id="new-title" placeholder="Project" required>
@@ -41,14 +37,14 @@
                     </button>
                 </div>
             </form>
-            <div class="categories">
-                <!--
-                <div data-value="0" class="item">Default</div>
-                <div data-value="1" class="item">Groceries</div>
-                <div data-value="2" class="item">Vacation</div>
-                <div data-value="3" class="item">House</div>-->
+            <div class="sub-head">
+                <button type="button" class="btn btn-outline-dark" id="new-project-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+                      </svg>
+                   New
+                </button>
             </div>
-
         </div>
 
         <div class="tasks-container">
@@ -77,9 +73,9 @@
                     </div>
                 </div>
 
-                <!-- -->
+
                 <div class="divider"></div>
-                <!-- -->
+
 
                 <div class="todo-container">
                     <!-- <div class="todo" data-value="0">
@@ -128,8 +124,6 @@
                             </select> 
                         </div>
                     </div>
-
-                
                     <div class="form-btn-container">
                         <div class="opt-btn">
                             <button type="button" class="btn btn-outline-dark" id="options-btn">
