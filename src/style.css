@@ -56,6 +56,19 @@ body {
     margin-top: 2em;
 }
 
+.reset-btn-container {
+    display: flex;
+    flex-grow: 1;
+    margin-top: 3em;
+    justify-content: center;
+}
+
+#memory-reset {
+    align-self: flex-end;
+    line-height: 1;
+    font-size: .8em;
+}
+
 .form-control.new {
     margin-bottom: .6em;
 }
