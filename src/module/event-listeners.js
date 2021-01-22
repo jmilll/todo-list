@@ -1,5 +1,5 @@
 
-import {allProjects} from '../index';
+import {allProjects, setData, clearMemory} from '../index';
 import {clearTasksDOM, renderTasks, createNewTask, addTaskFormExport} from './task';
 import {
     //renderProjects,
@@ -38,6 +38,11 @@ const _clearNewProjectInput = () => {
 };
 
 const projectListeners = () => {
+    // Clear all memory and return to demo
+    const resetButton = document.getElementById('memory-reset');
+    resetButton.addEventListener('click', () => {
+        clearMemory();
+    });
 
     const cat = document.querySelector('.categories');
     cat.addEventListener('click', (e) => {
@@ -59,10 +64,16 @@ const projectListeners = () => {
             clearTasksDOM();
             renderTasks(specificProject.todo);
 
+
+            setData();
+
+
             //populate heading from specific project
             loadProjectHeader(allProjects[searchActive()].name, allProjects[searchActive()].description);
 
             _closeAllEdit();
+
+            
         };
 
     });
@@ -91,6 +102,8 @@ const projectListeners = () => {
         addNewProject();
         loadActive();
         _clearNewProjectInput();
+
+        setData();
     });
 
     const cancelNewBtn = document.getElementById('cancel-new-btn');
@@ -126,6 +139,8 @@ const todoListeners = () => {
             allProjects[searchActive()].todo[a].checked = e.target.checked;
 
             _closeAllEdit();
+
+            setData();
         };
     });
 
@@ -142,12 +157,14 @@ const todoListeners = () => {
     const saveEditBtn = document.querySelector('#save-edit-btn');
     saveEditBtn.addEventListener('click', () => {
 
-    const p = document.querySelectorAll('.task-heading');
-    p.forEach(x => x.classList.toggle('visually-hidden'));
+        const p = document.querySelectorAll('.task-heading');
+        p.forEach(x => x.classList.toggle('visually-hidden'));
 
-    editProjectHeader();
-    loadActive();
-    _clearEditInput();
+        editProjectHeader();
+        loadActive();
+        _clearEditInput();
+
+        setData();
     });
 
     const cancelEditBtn = document.querySelector('#cancel-edit-btn');
@@ -186,6 +203,8 @@ const todoListeners = () => {
 
         //reset form bc prevented default operations
         document.querySelector(".task-submit").reset();
+
+        setData();
     });
 
     /*

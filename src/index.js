@@ -1,40 +1,36 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import {todoListeners, projectListeners} from './module/event-listeners';
-import {renderProjects, loadActive} from './module/project';
+import {renderProjects, loadActive, loadProjectHeader} from './module/project';
 
 
 //let allProjects = [];
 
 let allProjects = [
-    {name: 'Default',
-    description: 'Big time default',
+    {name: 'Default Project',
+    description: 'A little about myself and my journey',
     todo: [
-        {taskName: "default todo", date: "2021-01-19", priority: "3", checked: false},
+        {taskName: "Masters in Graphic Information Technology", date: "2021-01-19", priority: "1", checked: true},
+        {taskName: "Career path disreguarded by employer", date: "2021-01-19", priority: "2", checked: true},
+        {taskName: "Teach myself coding principles in my free time", date: "2021-01-19", priority: "3", checked: false},
+        {taskName: "I enjoy travel, video games, snowboarding, MTG, playing guitar", date: "2021-01-19", priority: "1", checked: true},
     ],
     active: true,
     },
-    {name: 'Test',
-    description: 'Testing out the project bud',
-    todo: [
-        {taskName: "first todo", date: "2021-01-19", priority: "1", checked: false},
-        {taskName: "aa", date: "2021-01-19", priority: "1", checked: false},
-        {taskName: "bb", date: "2021-01-19", priority: "2", checked: true},
-        {taskName: "cc", date: "2021-01-19", priority: "3", checked: false},
-    ],
-    active: false,
-    },
 ];
 
+//move to restore() for local storage
+//loadPage();
 
+const loadPage = () => {
 renderProjects();
 loadActive();
-
 todoListeners();
 projectListeners();
+};
 
 // LOCAL STORAGE TASK SAVING
-/*
+
 //Test for local storage
 function storageAvailable(type) {
     var storage;
@@ -72,30 +68,33 @@ if (storageAvailable('localStorage')) {
 // NEED TO SET DATA EVERYTIME DATA IS CHANGED
 // setting Library to be stored in local storage
 function setData() {
-    localStorage.setItem(`allProjects`, JSON.stringify(allProjects));
+    localStorage.setItem(`user`, JSON.stringify(allProjects));
 }
 
 //pulls books from local storage when page is refreshed
 function restore() {
-    if(!localStorage.allProjects) {
-        renderProjects();
+    if(!localStorage.user) {
+        //renderProjects();
+        console.log('not using storage');
+        loadPage();
     }else {
-        let objects = localStorage.getItem('allProjects') // gets information from local storage to use in below loop to create DOM/display
+        console.log('using local storage now');
+        let objects = localStorage.getItem('user') // gets information from local storage to use in below loop to create DOM/display
         let newObjects = JSON.parse(objects);
         allProjects = newObjects;
-        renderProjects();
+        loadPage();
     }
 }
 
-// Clear all memory and return to demo
-const resetButton = document.getElementById('memory-reset');
-resetButton.addEventListener('click', clearMemory)
 
+
+
+// Clear all memory and return to demo
 function clearMemory() {
     localStorage.clear();
     location.reload();
     return false;
 }
 
-*/
-export {allProjects};
+
+export {allProjects, setData, clearMemory};
