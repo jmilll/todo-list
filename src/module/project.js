@@ -1,5 +1,4 @@
 import {allProjects} from '../index';
-import { deleteListeners } from './event-listeners';
 import {renderTasks, clearTasksDOM} from './task';
 
 //********** ---------- PROJECT CREATION ----------**********
@@ -124,7 +123,6 @@ const loadEdit = () => {
     editDescription.value = allProjects[searchActive()].description;
 };
 
-
 const searchActive = () => {
     for (let i = 0; i < allProjects.length; i++) {
         const element = allProjects[i];
@@ -145,8 +143,6 @@ const  loadActive = () => {
 
     //add function for loading trashcan white
 };
-
-
 
 const clearProjectsDOM = () => {
     const categories = document.querySelector('.categories');
