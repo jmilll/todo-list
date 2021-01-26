@@ -1,30 +1,20 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
-import {todoListeners, projectListeners, deleteListeners} from './module/event-listeners';
-import {renderProjects, loadActive, loadProjectHeader} from './module/project';
-
-
-//let allProjects = [];
+import { todoListeners, projectListeners, deleteListeners } from './module/event-listeners';
+import { renderProjects, loadActive, } from './module/project';
 
 let allProjects = [
     {name: 'Default Project',
     description: 'A little about myself and my journey',
     todo: [
-        {taskName: "Masters in Graphic Information Technology", date: "2021-01-19", priority: "1", checked: true},
-        {taskName: "Career path disreguarded by employer", date: "2021-01-19", priority: "2", checked: true},
-        {taskName: "Teach myself coding principles in my free time", date: "2021-01-19", priority: "3", checked: false},
-        {taskName: "I enjoy travel, video games, snowboarding, MTG, playing guitar", date: "2021-01-19", priority: "1", checked: true},
-    ],
+        {taskName: "Masters in Graphic Information Technology", date: "01-19-2021", priority: "1", checked: true},
+        {taskName: "Career path troubles", date: "01-19-2021", priority: "2", checked: true},
+        {taskName: "Teach myself coding principles in my free time", date: "01-19-2021", priority: "3", checked: false},
+        {taskName: "I enjoy traveling (RIP COVID), video games, snowboarding, MTG, playing guitar", date: "01-19-2021", priority: "1", checked: true},
+        ],
     active: true,
     },
-    {name: 'a',description: '',todo: [],active: false,},
-    {name: 'b',description: '',todo: [],active: false,},
-    {name: 'c',description: '',todo: [],active: false,},
-    {name: 'd',description: '',todo: [],active: false,},
 ];
-
-//move to restore() for local storage
-//loadPage();
 
 const loadPage = () => {
 renderProjects();
@@ -34,7 +24,7 @@ projectListeners();
 deleteListeners();
 };
 
-// **LOCAL STORAGE TASK SAVING**
+// ****LOCAL STORAGE TASK SAVING****
 //Test for local storage
 function storageAvailable(type) {
     var storage;
