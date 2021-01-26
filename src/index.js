@@ -1,6 +1,6 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
-import {todoListeners, projectListeners} from './module/event-listeners';
+import {todoListeners, projectListeners, deleteListeners} from './module/event-listeners';
 import {renderProjects, loadActive, loadProjectHeader} from './module/project';
 
 
@@ -17,6 +17,10 @@ let allProjects = [
     ],
     active: true,
     },
+    {name: 'a',description: '',todo: [],active: false,},
+    {name: 'b',description: '',todo: [],active: false,},
+    {name: 'c',description: '',todo: [],active: false,},
+    {name: 'd',description: '',todo: [],active: false,},
 ];
 
 //move to restore() for local storage
@@ -27,10 +31,10 @@ renderProjects();
 loadActive();
 todoListeners();
 projectListeners();
+deleteListeners();
 };
 
-// LOCAL STORAGE TASK SAVING
-
+// **LOCAL STORAGE TASK SAVING**
 //Test for local storage
 function storageAvailable(type) {
     var storage;
@@ -66,12 +70,12 @@ if (storageAvailable('localStorage')) {
 }
 
 // NEED TO SET DATA EVERYTIME DATA IS CHANGED
-// setting Library to be stored in local storage
+// setting allprojects to be stored in local storage
 function setData() {
     localStorage.setItem(`user`, JSON.stringify(allProjects));
 }
 
-//pulls books from local storage when page is refreshed
+//pulls projects from local storage when page is refreshed
 function restore() {
     if(!localStorage.user) {
         //renderProjects();
@@ -86,15 +90,11 @@ function restore() {
     }
 }
 
-
-
-
 // Clear all memory and return to demo
 function clearMemory() {
     localStorage.clear();
     location.reload();
     return false;
 }
-
 
 export {allProjects, setData, clearMemory};

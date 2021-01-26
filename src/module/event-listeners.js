@@ -4,12 +4,15 @@ import {clearTasksDOM, renderTasks, createNewTask, addTaskFormExport} from './ta
 import {
     //renderProjects,
     addNewProject, 
+    deleteProject,
     clearActiveProjects, 
     loadProjectHeader, 
     editProjectHeader, 
     loadEdit, 
     searchActive, 
     loadActive,
+    renderProjects,
+    clearProjectsDOM,
 } from './project';
 
 //********** PROJECT CONTROL **********
@@ -53,7 +56,8 @@ const projectListeners = () => {
             for (let i = 0; i<categoryItem.length; i++) {
                 categoryItem[i].classList.remove('select');
             }
-            e.target.classList.add('select');
+            //no longer edit in the DOM, load active after render projects
+            //e.target.classList.add('select');
 
             let dataVal = e.target.dataset.value;
             let specificProject = allProjects[dataVal];
@@ -61,21 +65,22 @@ const projectListeners = () => {
             clearActiveProjects();
             specificProject.active = true;
 
+            clearProjectsDOM()
+            renderProjects();
+            loadActive();
+
             clearTasksDOM();
             renderTasks(specificProject.todo);
 
-
             setData();
-
 
             //populate heading from specific project
             loadProjectHeader(allProjects[searchActive()].name, allProjects[searchActive()].description);
 
             _closeAllEdit();
 
-            
+            deleteListeners();
         };
-
     });
 
     const newProjectBtn = document.getElementById('new-project-btn');
@@ -102,6 +107,8 @@ const projectListeners = () => {
         addNewProject();
         loadActive();
         _clearNewProjectInput();
+
+        deleteListeners();
 
         setData();
     });
@@ -164,6 +171,8 @@ const todoListeners = () => {
         loadActive();
         _clearEditInput();
 
+        deleteListeners();
+
         setData();
     });
 
@@ -207,27 +216,102 @@ const todoListeners = () => {
         setData();
     });
 
-    /*
-    const submitTaskBtn = document.querySelector('#submit-task-btn');
-    submitTaskBtn.addEventListener('click', (e) => {
-        //stop empty task add
-        if (!addTaskForm.getTask().taskName) return;
-        //prevent page refresh on submit
-        e.preventDefault();
-
-        newTaskBtn.classList.remove('visually-hidden');
-        document.querySelector('.task-submit').classList.add('visually-hidden');
-
-        createNewTask();
-
-        //reset form bc prevented default operations
-        document.querySelector(".task-submit").reset();
-    });
-    */
     const optionsBtn = document.querySelector('#options-btn');
     optionsBtn.addEventListener('click', () => {
         document.querySelector('.form-features').classList.toggle('visually-hidden');
     });
 };
 
-export {todoListeners, projectListeners};
+
+//********** DELETE CONTROL **********
+
+//whenever project added/removed reapply listeners
+const deleteListeners = () => {
+    
+    
+    //make delete btn appear on hover
+    const pItems = document.querySelectorAll('.item');
+    pItems.forEach(div => div.addEventListener('mouseenter', (e) => {
+            if (e.target.matches('.select')) {
+                console.log(e.target.dataset.value);
+                return;
+            } else {
+                e.target.querySelector('button').classList.remove('visually-hidden');
+                console.log(e.target.dataset.value);
+            }
+        }
+    )); 
+    pItems.forEach(div => div.addEventListener('mouseleave', (e) => {
+            if (e.target.matches('.select')) {
+                return;
+            } else {
+                e.target.querySelector('button').classList.add('visually-hidden');
+            }
+        }
+    )); 
+
+    const deleteBtns = document.querySelectorAll('.delete-btn');
+    deleteBtns.forEach(btn => btn.addEventListener('click', () => {
+        //prevent page lockout
+        if(allProjects.length === 1) {return};
+        //delete
+        deleteProject(btn.parentElement.dataset.value);
+        //make new active in case active was deleted
+        if (!searchActive()) {
+            console.log('deleted active')
+            allProjects[0].active = true;
+        };
+        //save
+        setData();
+        //clear projects in DOM
+        clearProjectsDOM();
+        //render from memory
+        renderProjects();
+        //highlight active
+        loadActive();
+        //add delete listeners back
+        deleteListeners();
+
+        
+    }));
+
+    /* tried dynamically but changes all
+    const parentElement = document.querySelector('.categories');
+    parentElement.addEventListener('mouseenter', (e) => {
+        if (!e.target) { return; }
+        if (e.target.matches('.select')) {
+            console.log(e.target.dataset.value);
+            return;
+        } else {
+            e.target.querySelector('button').classList.remove('visually-hidden');
+            console.log(e.target.dataset.value);
+        }
+    });
+
+    parentElement.addEventListener('mouseleave', (e) => {
+        if (!e.target) { return; }
+        if (e.target.matches('.select')) {
+            return;
+        } else {
+            e.target.querySelector('button').classList.add('visually-hidden');
+        }
+    });
+
+    parentElement.addEventListener('click', (e) => {
+        if (!e.target) { return; }
+        if (e.target.matches('.delete-btn')) {
+            //delete
+            deleteProject(e.target.parentElement.dataset.value);
+            //make new active in case active was deleted
+
+            //clear
+
+            //render
+            renderProjects();
+            
+        };
+    });
+    */
+}
+
+export {todoListeners, projectListeners, deleteListeners};
