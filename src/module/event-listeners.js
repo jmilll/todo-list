@@ -2,7 +2,6 @@
 import {allProjects, setData, clearMemory} from '../index';
 import {clearTasksDOM, renderTasks, createNewTask, addTaskFormExport} from './task';
 import {
-    //renderProjects,
     addNewProject, 
     deleteProject,
     clearActiveProjects, 
@@ -224,10 +223,7 @@ const todoListeners = () => {
 
 
 //********** DELETE CONTROL **********
-
-//whenever project added/removed reapply listeners
 const deleteListeners = () => {
-    
     
     //make delete btn appear on hover
     const pItems = document.querySelectorAll('.item');
@@ -250,6 +246,7 @@ const deleteListeners = () => {
         }
     )); 
 
+    //delete btn function
     const deleteBtns = document.querySelectorAll('.delete-btn');
     deleteBtns.forEach(btn => btn.addEventListener('click', () => {
         //prevent page lockout
@@ -274,44 +271,6 @@ const deleteListeners = () => {
 
         
     }));
-
-    /* tried dynamically but changes all
-    const parentElement = document.querySelector('.categories');
-    parentElement.addEventListener('mouseenter', (e) => {
-        if (!e.target) { return; }
-        if (e.target.matches('.select')) {
-            console.log(e.target.dataset.value);
-            return;
-        } else {
-            e.target.querySelector('button').classList.remove('visually-hidden');
-            console.log(e.target.dataset.value);
-        }
-    });
-
-    parentElement.addEventListener('mouseleave', (e) => {
-        if (!e.target) { return; }
-        if (e.target.matches('.select')) {
-            return;
-        } else {
-            e.target.querySelector('button').classList.add('visually-hidden');
-        }
-    });
-
-    parentElement.addEventListener('click', (e) => {
-        if (!e.target) { return; }
-        if (e.target.matches('.delete-btn')) {
-            //delete
-            deleteProject(e.target.parentElement.dataset.value);
-            //make new active in case active was deleted
-
-            //clear
-
-            //render
-            renderProjects();
-            
-        };
-    });
-    */
 }
 
 export {todoListeners, projectListeners, deleteListeners};
