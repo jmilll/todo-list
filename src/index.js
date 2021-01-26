@@ -10,7 +10,7 @@ let allProjects = [
         {taskName: "Masters in Graphic Information Technology", date: "01-19-2021", priority: "1", checked: true},
         {taskName: "Career path troubles", date: "01-19-2021", priority: "2", checked: true},
         {taskName: "Teach myself coding principles in my free time", date: "01-19-2021", priority: "3", checked: false},
-        {taskName: "I enjoy traveling (RIP COVID), video games, snowboarding, MTG, playing guitar", date: "01-19-2021", priority: "1", checked: true},
+        {taskName: "I enjoy travel, video games, snowboarding, MTG, playing guitar", date: "01-19-2021", priority: "1", checked: true},
         ],
     active: true,
     },
